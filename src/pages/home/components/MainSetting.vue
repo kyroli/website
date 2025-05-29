@@ -35,6 +35,8 @@ function renderColor(option: any): VNode {
   )
 }
 
+/* Icon Style */
+
 /* import and export */
 interface CacheData {
   data: Category[]
@@ -94,7 +96,7 @@ function resetData() {
     const clonedPreset = JSON.parse(JSON.stringify(preset))
     const data = clonedPreset as CacheData
     loadData(data)
-    window.$message.success('重置成功', { duration: 2000 })
+    window.$message.success( '重置成功', { duration: 2000 })
   }
 }
 
@@ -105,26 +107,6 @@ function loadData(data: any) {
   toggleSiteSytle()
   siteStore.cateIndex = 0
   renderStore.refreshSiteGroupList()
-}
-
-/* ✅ 新增：同步到 GitHub Issues */
-function syncToGitHub() {
-  const data: CacheData = {
-    data: siteStore.data,
-    settings: settingStore.settings,
-  }
-  const jsonStr = JSON.stringify(data, null, 2)
-  const issueTitle = encodeURIComponent('[Sync] 用户提交设置更新')
-  const issueBody = encodeURIComponent([
-    '请通过 GitHub Actions 同步以下设置到 preset.json。',
-    '',
-    '```json',
-    jsonStr,
-    '```',
-  ].join('\n'))
-
-  const issueUrl = `https://github.com/kyroli/website/issues/new?title=${issueTitle}&body=${issueBody}`
-  window.open(issueUrl, '_blank')
 }
 </script>
 
@@ -172,14 +154,20 @@ function syncToGitHub() {
       />
     </div>
     <div mt-24 flex justify-center gap-x-24>
-      <n-button @click="resetData">重置数据</n-button>
-      <n-button @click="importData">导入数据</n-button>
-      <n-button @click="exportData">导出数据</n-button>
-      <!-- 新增同步按钮 -->
-      <n-button type="primary" @click="syncToGitHub">同步到 GitHub</n-button>
+      <n-button @click="resetData">
+        重置数据
+      </n-button>
+      <n-button @click="importData">
+        导入数据
+      </n-button>
+      <n-button @click="exportData">
+        导出数据
+      </n-button>
     </div>
     <div my-24 flex-center gap-x-24>
-      <n-button type="primary" text-color='#ffffff' size="large" @click="$router.back()">返回</n-button>
+      <n-button type="primary" text-color='#ffffff' size="large" @click="$router.back()">
+        返回
+      </n-button>
     </div>
   </section>
   <ResetModal />

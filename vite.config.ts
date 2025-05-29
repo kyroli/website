@@ -27,11 +27,14 @@ export default defineConfig({
   },
   
   plugins: [
-    Vue(),
-    VueJsx(),
+    VueMacros({
+      plugins: {
+        vue: Vue(),
+        vueJsx: VueJsx(),
+      },
+    }),
     Unocss(),
     Pages(),
-    VueMacros(),
     AutoImport({
       imports: ['vue', 'vue-router', 'pinia', '@vueuse/core', 'vue/macros'],
       dts: 'src/auto-imports.d.ts',

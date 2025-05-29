@@ -35,8 +35,6 @@ function renderColor(option: any): VNode {
   )
 }
 
-/* Icon Style */
-
 /* import and export */
 interface CacheData {
   data: Category[]
@@ -96,7 +94,7 @@ function resetData() {
     const clonedPreset = JSON.parse(JSON.stringify(preset))
     const data = clonedPreset as CacheData
     loadData(data)
-    window.$message.success( '重置成功', { duration: 2000 })
+    window.$message.success('重置成功', { duration: 2000 })
   }
 }
 
@@ -108,67 +106,24 @@ function loadData(data: any) {
   siteStore.cateIndex = 0
   renderStore.refreshSiteGroupList()
 }
-</script>
 
-<template>
-  <section v-if="settingStore.isSetting" px="md:60 lg:120">
-    <div grid grid-cols-2 gap-24 lg:grid-cols-2 md:grid-cols-2>
-      <SettingSelection
-        v-model="settingStore.settings.theme"
-        title="主题风格"
-        :options="themeList"
-        :render-label="renderThemeLabel"
-        label-field="name"
-        value-field="enName"
-        :on-update-value="(theme: string) => toggleTheme(theme)"
-      />
-      <SettingSelection
-        v-model="settingStore.settings.search"
-        title="搜索引擎"
-        :options="searchList"
-        :render-label="renderColor"
-        label-field="name"
-        value-field="enName"
-        :on-update-value="(enName: string) => settingStore.setSettings({ search: enName })"
-      />
-      <SettingSelection
-        v-model="settingStore.settings.iconStyle"
-        title="图标风格"
-        :options="iconStyleList"
-        :render-label="renderColor"
-        label-field="name"
-        value-field="enName"
-        :on-update-value="(enName: string) => settingStore.setSettings({ iconStyle: enName })"
-      />
-      <SettingSelection
-        v-model="settingStore.settings.siteStyle"
-        title="色彩模式"
-        :options="siteStyleList"
-        :render-label="renderColor"
-        label-field="name"
-        value-field="enName"
-        :on-update-value="(enName: string) => {
-          settingStore.setSettings({ siteStyle: enName })
-          toggleSiteSytle()
-        }"
-      />
-    </div>
-    <div mt-24 flex justify-center gap-x-24>
-      <n-button @click="resetData">
-        重置数据
-      </n-button>
-      <n-button @click="importData">
-        导入数据
-      </n-button>
-      <n-button @click="exportData">
-        导出数据
-      </n-button>
-    </div>
-    <div my-24 flex-center gap-x-24>
-      <n-button type="primary" text-color='#ffffff' size="large" @click="$router.back()">
-        返回
-      </n-button>
-    </div>
-  </section>
-  <ResetModal />
-</template>
+/* ✅ 新增：同步到 GitHub Issues */
+function syncToGitHub() {
+  const data: CacheData = {
+    data: siteStore.data,
+    settings: settingStore.settings,
+  }
+  const jsonStr = JSON.stringify(data, null, 2)
+  const issueTitle = encodeURIComponent('[Sync] 用户提交设置更新')
+  const issueBody = encodeURIComponent([
+    '请通过 GitHub Actions 同步以下设置到 preset.json。',
+    '',
+    '```json',
+    jsonStr,
+    '```',
+  ].join('\n'))
+
+  const issueUrl = `https://github.com/kyroli/website/issues/new?title=${issueTitle}&body=${issueBody}`
+  window.open(issueUrl, '_blank')
+}
+</script>

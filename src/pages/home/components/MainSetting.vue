@@ -127,3 +127,60 @@ function syncToGitHub() {
   window.open(issueUrl, '_blank')
 }
 </script>
+
+<template>
+  <section v-if="settingStore.isSetting" px="md:60 lg:120">
+    <div grid grid-cols-2 gap-24 lg:grid-cols-2 md:grid-cols-2>
+      <SettingSelection
+        v-model="settingStore.settings.theme"
+        title="主题风格"
+        :options="themeList"
+        :render-label="renderThemeLabel"
+        label-field="name"
+        value-field="enName"
+        :on-update-value="(theme: string) => toggleTheme(theme)"
+      />
+      <SettingSelection
+        v-model="settingStore.settings.search"
+        title="搜索引擎"
+        :options="searchList"
+        :render-label="renderColor"
+        label-field="name"
+        value-field="enName"
+        :on-update-value="(enName: string) => settingStore.setSettings({ search: enName })"
+      />
+      <SettingSelection
+        v-model="settingStore.settings.iconStyle"
+        title="图标风格"
+        :options="iconStyleList"
+        :render-label="renderColor"
+        label-field="name"
+        value-field="enName"
+        :on-update-value="(enName: string) => settingStore.setSettings({ iconStyle: enName })"
+      />
+      <SettingSelection
+        v-model="settingStore.settings.siteStyle"
+        title="色彩模式"
+        :options="siteStyleList"
+        :render-label="renderColor"
+        label-field="name"
+        value-field="enName"
+        :on-update-value="(enName: string) => {
+          settingStore.setSettings({ siteStyle: enName })
+          toggleSiteSytle()
+        }"
+      />
+    </div>
+    <div mt-24 flex justify-center gap-x-24>
+      <n-button @click="resetData">重置数据</n-button>
+      <n-button @click="importData">导入数据</n-button>
+      <n-button @click="exportData">导出数据</n-button>
+      <!-- 新增同步按钮 -->
+      <n-button type="primary" @click="syncToGitHub">同步到 GitHub</n-button>
+    </div>
+    <div my-24 flex-center gap-x-24>
+      <n-button type="primary" text-color='#ffffff' size="large" @click="$router.back()">返回</n-button>
+    </div>
+  </section>
+  <ResetModal />
+</template>

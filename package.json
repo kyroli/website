@@ -2,6 +2,7 @@
   "name": "网址导航",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "dev": "vite",

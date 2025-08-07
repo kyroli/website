@@ -1,0 +1,1 @@
+import{g as r}from"./commons-4d60aff1.js";import{cl as t,B as s}from"./index-502e883b.js";const u=t("render",()=>{const e=s(r());function o(){e.value=r()}return{siteGroupListKey:e,refreshSiteGroupList:o}});export{u};

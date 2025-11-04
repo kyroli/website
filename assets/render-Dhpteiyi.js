@@ -1,1 +1,0 @@
-import{g as r}from"./commons-DnPATCER.js";import{cn as t,D as s}from"./index-B5dwSFgx.js";const u=t("render",()=>{const e=s(r());function o(){e.value=r()}return{siteGroupListKey:e,refreshSiteGroupList:o}});export{u};

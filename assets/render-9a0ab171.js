@@ -1,0 +1,1 @@
+import{g as r}from"./commons-4d60aff1.js";import{cn as t,D as s}from"./index-dbc4d343.js";const u=t("render",()=>{const e=s(r());function o(){e.value=r()}return{siteGroupListKey:e,refreshSiteGroupList:o}});export{u};

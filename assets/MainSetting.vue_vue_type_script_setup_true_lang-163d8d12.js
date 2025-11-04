@@ -1,1 +1,0 @@
-import{h as e,b5 as t}from"./index-2a2233ca.js";import{u as o}from"./reset-a0c37f58.js";import{u as r}from"./site-1e97589d.js";import{u as s}from"./render-2a6f8400.js";const u=e({__name:"MainSetting",setup(m){return o(),t(),r(),s(),()=>{}}});export{u as _};

@@ -1,56 +1,48 @@
 <script setup lang="ts">
 import SettingSelection from './SettingSelection.vue'
-import type { Settings, Category } from '@/types'
-import type { ThemeSetting } from '@/utils'
-import { iconStyleList, searchList, themeList, siteStyleList } from '@/utils'
 import ResetModal from './ResetModal.vue'
 import preset from '@/preset.json'
 import router from '@/router'
-import { toggleSiteSytle, toggleTheme } from '@/composables/dark'
+import { toggleSiteSytle } from '@/composables/dark'
+import { iconStyleList, searchList, themeList, siteStyleList } from '@/utils'
+import type { Settings, Category } from '@/types'
 
 const resetStore = useResetModalStore()
 const settingStore = useSettingStore()
-const renderStore = useRenderStore()
 const siteStore = useSiteStore()
+const renderStore = useRenderStore()
 
-/* ThemeSetting */
-function renderThemeLabel(option: ThemeSetting): VNode {
-  const currentTheme = themeList.find(item => item.enName === option.enName)!
-  const buttonColor = currentTheme!.value.buttonC
-  const darkConfig = isDark.value ? { style: { color: '#ffffff' } } : {}
-  return h('div', { class: 'flex items-center gap-x-8' },
-    [
-      h('div', { class: 'w-16 h-16 circle border-1 border-fff', style: { backgroundColor: buttonColor } }),
-      h('div', darkConfig, option.name),
-    ],
-  )
-}
-
-/* render color */
-function renderColor(option: any): VNode {
-  const darkConfig = isDark.value ? { style: { color: '#ffffff' } } : {}
-  return h('div', { class: 'flex items-center gap-x-8' },
-    [
-      h('div', darkConfig, option.name),
-    ],
-  )
-}
-
-/* import and export */
 interface CacheData {
   data: Category[]
   settings: Settings
 }
 
+/* Theme Setting 渲染 */
+function renderThemeLabel(option: any) {
+  const currentTheme = themeList.find(item => item.enName === option.enName)!
+  const buttonColor = currentTheme.value.buttonC
+  const darkConfig = isDark.value ? { style: { color: '#ffffff' } } : {}
+  return h('div', { class: 'flex items-center gap-x-8' }, [
+    h('div', { class: 'w-16 h-16 circle border-1 border-fff', style: { backgroundColor: buttonColor } }),
+    h('div', darkConfig, option.name)
+  ])
+}
+
+function renderColor(option: any) {
+  const darkConfig = isDark.value ? { style: { color: '#ffffff' } } : {}
+  return h('div', { class: 'flex items-center gap-x-8' }, [
+    h('div', darkConfig, option.name)
+  ])
+}
+
+/* 导入导出数据 */
 function exportData() {
   const data = {
     data: siteStore.data,
-    settings: settingStore.settings,
+    settings: settingStore.settings
   }
-  // 保留漂亮缩进
-  const jsonStr = JSON.stringify(data, null, 2)
+  const jsonStr = JSON.stringify(data)
   const blob = new Blob([jsonStr], { type: 'application/json' })
-
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.download = `COMECOME_Data_${new Date().toLocaleString()}.json`
@@ -74,9 +66,7 @@ function importData() {
           throw new Error('非法的数据文件')
         }
         loadData(data)
-        window.$message.success('导入成功', { duration: 2000 })
-      }
-      catch (error) {
+      } catch {
         window.$message.error('请导入合法的数据文件', { duration: 2000 })
       }
     }
@@ -84,6 +74,7 @@ function importData() {
   inputElement.click()
 }
 
+/* 重置数据 */
 function resetData() {
   resetStore.title = '重置确认'
   resetStore.content = '是否确认要重置所有设置?'
@@ -99,10 +90,10 @@ function resetData() {
   }
 }
 
+/* 加载数据到 store */
 function loadData(data: CacheData) {
   siteStore.setData(data.data)
   settingStore.setSettings(data.settings)
-  toggleTheme(data.settings.theme)
   toggleSiteSytle()
   siteStore.cateIndex = 0
   renderStore.refreshSiteGroupList()

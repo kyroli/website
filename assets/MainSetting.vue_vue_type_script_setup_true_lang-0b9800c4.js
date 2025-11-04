@@ -1,1 +1,0 @@
-import{h as o,b5 as r,b8 as n,s as i}from"./index-4cca5fc2.js";import{u as a}from"./reset-f5507175.js";import{u}from"./render-8438d525.js";import{u as m}from"./site-f24bb206.js";const d=o({__name:"MainSetting",setup(p){a();const e=r();u(),m();const t=n();return i(t,()=>{const s=t.path||"";e.isSetting=s.includes("setting")},{immediate:!0}),()=>{}}});export{d as _};

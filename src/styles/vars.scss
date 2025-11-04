@@ -1,12 +1,13 @@
 :root {
-  --text-c: #374151;
-  --text-c-1: #606060;
+  /* Light theme */
+  --text-c: #374151 !default;
+  --text-c-1: #606060 !default;
 
-  // ------ Dark theme
-  --dark-bg-c: #1e1e20;
-  --dark-main-bg-c: #1e1e20;
-  --dark-text-c: #e1e1e1;
-  --dark-text-c-1: #c1c1c1;
+  /* Dark theme */
+  --dark-bg-c: #1e1e20 !default;
+  --dark-main-bg-c: #1e1e20 !default;
+  --dark-text-c: #e1e1e1 !default;
+  --dark-text-c-1: #c1c1c1 !default;
 }
 
 html.dark {

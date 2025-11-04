@@ -50,7 +50,7 @@ function exportData() {
     data: siteStore.data,
     settings: settingStore.settings,
   }
-  const jsonStr = JSON.stringify(data, null, 2)
+  const jsonStr = JSON.stringify(data, null, 2))
   const blob = new Blob([jsonStr], { type: 'application/json' })
 
   const url = URL.createObjectURL(blob)
@@ -114,7 +114,7 @@ function loadData(data: any) {
   <section v-if="settingStore.isSetting" px="md:60 lg:120">
     <div grid grid-cols-2 gap-24 lg:grid-cols-2 md:grid-cols-2>
       <SettingSelection
-        v-model="settingStore.设置。theme"
+        v-model="settingStore.settings.theme"
         title="主题风格"
         :options="themeList"
         :render-label="renderThemeLabel"
@@ -123,7 +123,7 @@ function loadData(data: any) {
         :on-update-value="(theme: string) => toggleTheme(theme)"
       />
       <SettingSelection
-        v-model="settingStore.设置.search"
+        v-model="settingStore.settings.search"
         title="搜索引擎"
         :options="searchList"
         :render-label="renderColor"
@@ -165,7 +165,7 @@ function loadData(data: any) {
       </n-button>
     </div>
     <div my-24 flex-center gap-x-24>
-      <n-button 输入="primary" text-color='#ffffff' size="large" @click="$router.back()">
+      <n-button type="primary" text-color='#ffffff' size="large" @click="$router.back()">
         返回
       </n-button>
     </div>

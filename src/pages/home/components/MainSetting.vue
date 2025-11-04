@@ -45,17 +45,22 @@ interface CacheData {
 
 const siteStore = useSiteStore()
 
+/* ✅ 修正版导出函数：保留换行、缩进、UTF-8 编码 */
 function exportData() {
   const data = {
     data: siteStore.data,
     settings: settingStore.settings,
   }
-  const jsonStr = JSON.stringify(data)
-  const blob = new Blob([jsonStr], { type: 'application/json' })
+
+  // ✅ 格式化 JSON，使用 2 空格缩进
+  const jsonStr = JSON.stringify(data, null, 2)
+
+  // ✅ 防止中文乱码，加上 UTF-8 BOM
+  const blob = new Blob(["\uFEFF" + jsonStr], { type: 'application/json;charset=utf-8;' })
 
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
-  a.download = `COMECOME_Data_${new Date().toLocaleString()}.json`
+  a.download = `Data_${new Date().toLocaleString()}.json`
   a.href = url
   document.body.appendChild(a)
   a.click()
@@ -96,7 +101,7 @@ function resetData() {
     const clonedPreset = JSON.parse(JSON.stringify(preset))
     const data = clonedPreset as CacheData
     loadData(data)
-    window.$message.success( '重置成功', { duration: 2000 })
+    window.$message.success('重置成功', { duration: 2000 })
   }
 }
 
@@ -109,66 +114,3 @@ function loadData(data: any) {
   renderStore.refreshSiteGroupList()
 }
 </script>
-
-<template>
-  <section v-if="settingStore.isSetting" px="md:60 lg:120">
-    <div grid grid-cols-2 gap-24 lg:grid-cols-2 md:grid-cols-2>
-      <SettingSelection
-        v-model="settingStore.settings.theme"
-        title="主题风格"
-        :options="themeList"
-        :render-label="renderThemeLabel"
-        label-field="name"
-        value-field="enName"
-        :on-update-value="(theme: string) => toggleTheme(theme)"
-      />
-      <SettingSelection
-        v-model="settingStore.settings.search"
-        title="搜索引擎"
-        :options="searchList"
-        :render-label="renderColor"
-        label-field="name"
-        value-field="enName"
-        :on-update-value="(enName: string) => settingStore.setSettings({ search: enName })"
-      />
-      <SettingSelection
-        v-model="settingStore.settings.iconStyle"
-        title="图标风格"
-        :options="iconStyleList"
-        :render-label="renderColor"
-        label-field="name"
-        value-field="enName"
-        :on-update-value="(enName: string) => settingStore.setSettings({ iconStyle: enName })"
-      />
-      <SettingSelection
-        v-model="settingStore.settings.siteStyle"
-        title="色彩模式"
-        :options="siteStyleList"
-        :render-label="renderColor"
-        label-field="name"
-        value-field="enName"
-        :on-update-value="(enName: string) => {
-          settingStore.setSettings({ siteStyle: enName })
-          toggleSiteSytle()
-        }"
-      />
-    </div>
-    <div mt-24 flex justify-center gap-x-24>
-      <n-button @click="resetData">
-        重置数据
-      </n-button>
-      <n-button @click="importData">
-        导入数据
-      </n-button>
-      <n-button @click="exportData">
-        导出数据
-      </n-button>
-    </div>
-    <div my-24 flex-center gap-x-24>
-      <n-button type="primary" text-color='#ffffff' size="large" @click="$router.back()">
-        返回
-      </n-button>
-    </div>
-  </section>
-  <ResetModal />
-</template>

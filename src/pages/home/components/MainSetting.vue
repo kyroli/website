@@ -55,7 +55,7 @@ function exportData() {
 
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
-  a.download = `COMECOME_Data_${new Date().toLocaleString()}.json`
+  a.download = `Data_${new Date().toLocaleString()}.json`
   a.href = url
   document.body.appendChild(a)
   a.click()

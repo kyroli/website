@@ -1,10 +1,8 @@
-import engBaidu from './eng-baidu'
 import engGoogle from './eng-google'
 import engBing from './eng-bing'
 import engWikipedia from './eng-wikipedia'
 
 const ENGINES = {
-  Baidu: engBaidu,
   Google: engGoogle,
   Bing: engBing,
   Wikipedia: engWikipedia,

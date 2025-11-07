@@ -124,13 +124,6 @@
           "name": "工具",
           "siteList": [
             {
-              "id": 1717300858601,
-              "name": "百度翻译",
-              "url": "https://fanyi.baidu.com",
-              "favicon": "",
-              "bgColor": "#c06b0e"
-            },
-            {
               "id": 1717300869575,
               "name": "Google翻译",
               "url": "https://translate.google.com/",

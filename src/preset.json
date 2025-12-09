@@ -5,8 +5,8 @@
       "name": "网站导航",
       "groupList": [
         {
-          "id": 1717300150099,
-          "name": "博客",
+          "id": 1765195620932,
+          "name": "娱乐",
           "siteList": [
             {
               "id": 1717300624122,
@@ -15,6 +15,19 @@
               "favicon": "",
               "bgColor": "#070700"
             },
+            {
+              "id": 1765298101332,
+              "name": "Discord",
+              "url": "https://discord.com/channels/@me",
+              "favicon": "",
+              "bgColor": ""
+            }
+          ]
+        },
+        {
+          "id": 1717300150099,
+          "name": "博客",
+          "siteList": [
             {
               "id": 1717300240969,
               "name": "蓝点网",
@@ -28,33 +41,6 @@
               "url": "https://www.ghxi.com/",
               "favicon": "",
               "bgColor": "#005bb8"
-            }
-          ]
-        },
-        {
-          "id": 1732426263158,
-          "name": "冲浪",
-          "siteList": [
-            {
-              "id": 1732426178756,
-              "name": "蛋挞云",
-              "url": "https://eggtart.cloud",
-              "favicon": "",
-              "bgColor": "#6e2d1e"
-            },
-            {
-              "id": 1732426205852,
-              "name": "Perfect Link",
-              "url": "https://www.perlnk.com/user/",
-              "favicon": "",
-              "bgColor": "#33afad"
-            },
-            {
-              "id": 1751548858069,
-              "name": "Preset",
-              "url": "https://github.com/kyroli/website/blob/main/src/preset.json",
-              "favicon": "",
-              "bgColor": "#1bc0ed"
             }
           ]
         },
@@ -109,6 +95,33 @@
               "url": "https://gemini.google.com/",
               "favicon": "",
               "bgColor": ""
+            }
+          ]
+        },
+        {
+          "id": 1732426263158,
+          "name": "冲浪",
+          "siteList": [
+            {
+              "id": 1732426178756,
+              "name": "蛋挞云",
+              "url": "https://eggtart.cloud",
+              "favicon": "",
+              "bgColor": "#6e2d1e"
+            },
+            {
+              "id": 1732426205852,
+              "name": "Perfect Link",
+              "url": "https://www.perlnk.com/user/",
+              "favicon": "",
+              "bgColor": "#33afad"
+            },
+            {
+              "id": 1751548858069,
+              "name": "Preset",
+              "url": "https://github.com/kyroli/website/blob/main/src/preset.json",
+              "favicon": "",
+              "bgColor": "#1bc0ed"
             }
           ]
         },

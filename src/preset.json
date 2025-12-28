@@ -95,6 +95,13 @@
               "url": "https://gemini.google.com/",
               "favicon": "",
               "bgColor": ""
+            },
+            {
+              "id": 1766937870834,
+              "name": "DeepSeek",
+              "url": "https://chat.deepseek.com/",
+              "favicon": "",
+              "bgColor": ""
             }
           ]
         },
@@ -176,6 +183,13 @@
               "url": "https://www.jianguoyun.com/#/",
               "favicon": "",
               "bgColor": "#131307"
+            },
+            {
+              "id": 1766937854478,
+              "name": "DeepSeek",
+              "url": "https://chat.deepseek.com/",
+              "favicon": "",
+              "bgColor": ""
             }
           ]
         },

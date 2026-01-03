@@ -1,0 +1,1 @@
+import{u as o,G as c}from"./index-DEZbLYte.js";const i="https://api.xinac.net/icon/?url=";function a(t){const e=t.replace(/(^\w+:|^)\/\//,"").match(/([a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)/);return e&&e.length>1?e[1]:null}function r(t){const n=a(t);return n?`${i}https://${n}`:""}function u(){const t=o();return{iconStyle:c(()=>t.getSettingItem("iconStyle").value.style)}}export{r as g,u};

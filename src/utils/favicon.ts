@@ -1,4 +1,4 @@
-const FAVICON_API = 'https://favicons.fuzqing.workers.dev/api/getFavicon?url='
+const FAVICON_API = 'https://api.xinac.net/icon/?url='
 
 function getDomainName(url: string) {
   const domain = url.replace(/(^\w+:|^)\/\//, '')
@@ -9,5 +9,5 @@ function getDomainName(url: string) {
 export function getFaviconUrl(url: string) {
   const domain = getDomainName(url)
   if (!domain) return ''
-  return `${FAVICON_API}${domain}&size=64`
+  return `${FAVICON_API}https://${domain}`
 }
